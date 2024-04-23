@@ -1,11 +1,12 @@
 package org.example;
 
 
+
 public class Main extends Methods {
 
 
-    public static void main(String[] args) {
-        attendanceListUpdate();
+    public static void main(String[] args) throws Exception {
+        updateAttendance();
     }
 
 }

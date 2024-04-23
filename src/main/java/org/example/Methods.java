@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 
 public class Methods{
+
     public static void AllStudentsTableCall(){
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -163,10 +164,10 @@ public class Methods{
         }
     }
 
-    public  static void attendanceListUpdate(){
+    public  static void attendanceListInput(){
         Scanner scanner = new Scanner(System.in);
         String classdate = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
-        System.out.print("Input data for class id: ");
+        System.out.print("Input class name: ");
         String classId= scanner.nextLine();
         if (classId.equals("math")) {
             classId="1";
@@ -192,19 +193,73 @@ public class Methods{
         if (classId.equals("painting")) {
             classId="8";
         }
-        System.out.print("Input data for student id: ");
-        String studentId= scanner.nextLine();
-        System.out.println("Attendance is marked as 1-present or 2-absent and 3-justified absence.");
-        System.out.print("Input data for attendance: ");
-        String attendance=scanner.nextLine();
+        System.out.println("Attendance is marked as: 1-present or 2-absent and 3-justified absence.");
+        for (int i=1; i<=18; i++){
+            System.out.print("Is the student with ID "+ i +" present:");
+            String attendance=scanner.nextLine();
+            try {
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/Atendance","root","1234");
+                Statement statement = connection.prepareCall("{call UpdateAtendanceList(\""+classdate+"\",\""+classId+"\",\""+i+"\",\""+attendance+"\")}");
+                ResultSet resultSet = statement.executeQuery("{call UpdateAtendanceList(\""+classdate+"\",\""+classId+"\",\""+i+"\",\""+attendance+"\")}");
+                System.out.println("The data has been entered!");
+            }
+            catch (SQLException | ClassNotFoundException s){
+                System.out.println("Data has NOT been entered");
+            }
+        }
+    }
+    public static void updateAttendance() throws Exception {
+        Scanner scanner=new Scanner(System.in);
+        System.out.print("Input date: ");
+        String classdate= scanner.nextLine();
+        String TodayDate = new Date().toString();
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/Atendance","root","1234");
-            Statement statement = connection.prepareCall("{call UpdateAtendanceList(\""+classdate+"\",\""+classId+"\",\""+studentId+"\",\""+attendance+"\")}");
-            ResultSet resultSet = statement.executeQuery("{call UpdateAtendanceList(\""+classdate+"\",\""+classId+"\",\""+studentId+"\",\""+attendance+"\")}");
-            System.out.println("The data has been entered!");
-        }catch (SQLException | ClassNotFoundException s){
-            System.out.println("Data has NOT been entered");
+            if (classdate!=TodayDate){
+                throw new Exception();
+            }else {
+                System.out.print("Input class name: ");
+                String classId = scanner.nextLine();
+                if (classId.equals("math")) {
+                    classId = "1";
+                }
+                if (classId.equals("writing")) {
+                    classId = "2";
+                }
+                if (classId.equals("history")) {
+                    classId = "3";
+                }
+                if (classId.equals("music")) {
+                    classId = "4";
+                }
+                if (classId.equals("dancing")) {
+                    classId = "5";
+                }
+                if (classId.equals("fencing")) {
+                    classId = "6";
+                }
+                if (classId.equals("literature")) {
+                    classId = "7";
+                }
+                if (classId.equals("painting")) {
+                    classId = "8";
+                }
+                System.out.println("Enter student ID: ");
+                String studentId = scanner.nextLine();
+                System.out.println("Attendance is marked as: 1-present, 2-absent, 3-justified absence");
+                System.out.print("Enter absence type: ");
+                String attendance = scanner.nextLine();
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/Atendance","root","1234");
+                Statement statement = connection.prepareCall("{call updateListOfAttendance(\""+classdate+"\",\""+classId+"\",\""+studentId+"\",\""+attendance+"\")}");
+                ResultSet resultSet = statement.executeQuery("{call updateListOfAttendance(\""+classdate+"\",\""+classId+"\",\""+studentId+"\",\""+attendance+"\")}");
+                System.out.println("The data has been entered!");
+            }
+        }
+        catch (SQLException | ClassNotFoundException s){
+            System.out.println("Data not entered");
+        }catch (Exception e){
+            System.out.println("Dates do not match! Update not possible!");
         }
     }
 }
