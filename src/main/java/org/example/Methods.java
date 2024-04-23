@@ -209,50 +209,51 @@ public class Methods{
             }
         }
     }
-    public static void updateAttendance() throws Exception {
+    public static void updateAttendance(){
         Scanner scanner=new Scanner(System.in);
-        System.out.print("Input date: ");
-        String classdate= scanner.nextLine();
-        String TodayDate = new Date().toString();
         try {
-            if (classdate!=TodayDate){
+            String datetoday= new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+            System.out.print("Input date: ");
+            String classdate = scanner.next();
+            if (!classdate.equals(datetoday)){
                 throw new Exception();
             }else {
-                System.out.print("Input class name: ");
-                String classId = scanner.nextLine();
-                if (classId.equals("math")) {
-                    classId = "1";
+                scanner.nextLine();
+                System.out.println("Input class name: ");
+                String className = scanner.nextLine();
+                if (className.equals("math")) {
+                    className = "1";
                 }
-                if (classId.equals("writing")) {
-                    classId = "2";
+                if (className.equals("writing")) {
+                    className = "2";
                 }
-                if (classId.equals("history")) {
-                    classId = "3";
+                if (className.equals("history")) {
+                    className = "3";
                 }
-                if (classId.equals("music")) {
-                    classId = "4";
+                if (className.equals("music")) {
+                    className = "4";
                 }
-                if (classId.equals("dancing")) {
-                    classId = "5";
+                if (className.equals("dancing")) {
+                    className = "5";
                 }
-                if (classId.equals("fencing")) {
-                    classId = "6";
+                if (className.equals("fencing")) {
+                    className = "6";
                 }
-                if (classId.equals("literature")) {
-                    classId = "7";
+                if (className.equals("literature")) {
+                    className = "7";
                 }
-                if (classId.equals("painting")) {
-                    classId = "8";
+                if (className.equals("painting")) {
+                    className = "8";
                 }
                 System.out.println("Enter student ID: ");
                 String studentId = scanner.nextLine();
                 System.out.println("Attendance is marked as: 1-present, 2-absent, 3-justified absence");
                 System.out.print("Enter absence type: ");
-                String attendance = scanner.nextLine();
+                String absenceType = scanner.nextLine();
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/Atendance","root","1234");
-                Statement statement = connection.prepareCall("{call updateListOfAttendance(\""+classdate+"\",\""+classId+"\",\""+studentId+"\",\""+attendance+"\")}");
-                ResultSet resultSet = statement.executeQuery("{call updateListOfAttendance(\""+classdate+"\",\""+classId+"\",\""+studentId+"\",\""+attendance+"\")}");
+                Statement statement = connection.prepareCall("{call updateListOfAttendance(\""+classdate+"\",\""+className+"\",\""+studentId+"\",\""+absenceType+"\")}");
+                statement.executeQuery("{call updateListOfAttendance(\""+classdate+"\",\""+className+"\",\""+studentId+"\",\""+absenceType+"\")}");
                 System.out.println("The data has been entered!");
             }
         }
