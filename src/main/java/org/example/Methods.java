@@ -221,30 +221,6 @@ public class Methods{
                 scanner.nextLine();
                 System.out.println("Input class name: ");
                 String className = scanner.nextLine();
-                if (className.equals("math")) {
-                    className = "1";
-                }
-                if (className.equals("writing")) {
-                    className = "2";
-                }
-                if (className.equals("history")) {
-                    className = "3";
-                }
-                if (className.equals("music")) {
-                    className = "4";
-                }
-                if (className.equals("dancing")) {
-                    className = "5";
-                }
-                if (className.equals("fencing")) {
-                    className = "6";
-                }
-                if (className.equals("literature")) {
-                    className = "7";
-                }
-                if (className.equals("painting")) {
-                    className = "8";
-                }
                 System.out.println("Enter student ID: ");
                 String studentId = scanner.nextLine();
                 System.out.println("Attendance is marked as: 1-present, 2-absent, 3-justified absence");
