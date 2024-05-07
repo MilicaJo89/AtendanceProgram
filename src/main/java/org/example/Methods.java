@@ -56,7 +56,7 @@ public class Methods{
                 String attendanceDay=(resultSet.getString("atendance_day")+" ");
                 String classId=(resultSet.getString("class_id")+" ");
                 String studentId=(resultSet.getString("student_id"));
-                String presence=(resultSet.getString("presence"));
+                String presence=(resultSet.getString("absence_type"));
                 System.out.printf("%-10.10s  %-2.2s  %2.2s  %-7.7s%n",attendanceDay , classId,studentId,presence);
             }
         }catch (SQLException | ClassNotFoundException s){
@@ -97,7 +97,7 @@ public class Methods{
                 String firstName=(resultSet.getString("first name"));
                 String lastName = (resultSet.getString("last name"));
                 String dateOfAttendance=(resultSet.getString("date"));
-                String presence=(resultSet.getString("presence"));
+                String presence=(resultSet.getString("absence type"));
                 System.out.printf("%-10.10s  %-3.3s  %-12.12s  %-10.10s  %-10.10s  %-7.7s%n",nameOfClass,studentId, firstName,lastName, dateOfAttendance, presence);
             }
         }catch (SQLException | ClassNotFoundException s){
@@ -117,7 +117,7 @@ public class Methods{
                 String lastName = (resultSet.getString("last name"));
                 String nameOfClass = (resultSet.getString("class"));
                 String dateOfAttendance = (resultSet.getString("date"));
-                String presence = (resultSet.getString("presence"));
+                String presence = (resultSet.getString("attendance type"));
                 System.out.printf("%-10.10s  %-12.12s  %-10.10s  %-10.10s  %-7.7s%n", firstName, lastName, nameOfClass, dateOfAttendance, presence);
             }
         } catch (SQLException | ClassNotFoundException s) {
@@ -137,7 +137,7 @@ public class Methods{
                 String lastName = (resultSet.getString("last name"));
                 String nameOfClass = (resultSet.getString("class"));
                 String dateOfAttendance = (resultSet.getString("date"));
-                String presence = (resultSet.getString("presence"));
+                String presence = (resultSet.getString("attendance type"));
                 System.out.printf("%-10.10s  %-12.12s  %-10.10s  %-10.10s  %-7.7s%n", firstName, lastName, nameOfClass, dateOfAttendance, presence);
             }
         } catch (SQLException | ClassNotFoundException s) {
@@ -157,7 +157,7 @@ public class Methods{
                 String lastName = (resultSet.getString("last name"));
                 String nameOfClass = (resultSet.getString("class"));
                 String dateOfAttendance = (resultSet.getString("date"));
-                String presence = (resultSet.getString("presence"));
+                String presence = (resultSet.getString("attendance type"));
                 System.out.printf("%-10.10s  %-12.12s  %-10.10s  %-10.10s  %-7.7s%n", firstName, lastName, nameOfClass, dateOfAttendance, presence);
             }
         } catch (SQLException | ClassNotFoundException s) {
