@@ -45,7 +45,7 @@ public class Methods{
         }
     }
 
-    public static void FullAtendanceTableList(){
+    public static void FullAttendanceTableList(){
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/Atendance","root","1234");
@@ -217,6 +217,7 @@ public class Methods{
             System.out.println("Dates do not match! Update not possible!");
         }
     }
+
     public static void fullAttendanceListForSpecificClassOnSpecificDate(){
         try {
             //returns a full list of attendance for a specific class on a specific date
@@ -243,7 +244,8 @@ public class Methods{
 
         }
     }
-    public static void PrecentageCalculation() {
+
+    public static void PercentageCalculation() {
         try {
             //returns a full list of attendance for a specific class on a specific date
             Scanner scanner = new Scanner(System.in);
@@ -267,7 +269,6 @@ public class Methods{
         }
     }
 
-
     public static void inputNewStudent() {
         try {
             Scanner scanner = new Scanner(System.in);
@@ -285,7 +286,6 @@ public class Methods{
             System.out.println("Data has not been entered");
         }
     }
-
 
     public static void changeOfStudentStatus() {
         try {
@@ -305,6 +305,4 @@ public class Methods{
             System.out.println("Data has not been entered");
         }
     }
-
-
 }
